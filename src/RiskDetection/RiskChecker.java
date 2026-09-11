@@ -1,7 +1,7 @@
 public class RiskChecker {
     public static void main(String[] args) {
 
-        String studentName = "john ";
+        String studentName = "John ";
         
         double averageMark = 55;
         double attendance = 68;
@@ -13,7 +13,5 @@ if (attendance < 60||averageMark < 50) {
 } else {
     System.out.println(studentName + " has good attendance");
 }
-
-
     }
 }
