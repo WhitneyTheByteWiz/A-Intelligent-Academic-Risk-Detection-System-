@@ -1,7 +1,8 @@
 public class RiskChecker {
     public static void main(String[] args) {
 
-        String studentName = "Malichi";
+        String studentName = "john ";
+        
         double averageMark = 55;
         double attendance = 68;
 
