@@ -1,3 +1,4 @@
+package src.RiskDetection;
 public class RiskChecker {
     public static void main(String[] args) {
 
