@@ -1,9 +1,8 @@
 package src.RiskDetection;
 public class RiskChecker {
     public static void main(String[] args) {
-
-        String studentName = "John ";
         
+    String studentName = "John ";
         double averageMark = 55;
         double attendance = 68;
 
