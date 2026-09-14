@@ -1,5 +1,4 @@
 package src.Dashboard;
 
-public class RiskDashboard {
-    
+public class RiskDashboard {  
 }
