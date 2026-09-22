@@ -1,4 +1,4 @@
-package src.RiskChecker;
+package src.RiskDetectionAndAssessment;
 
 import java.util.Scanner;
 
