@@ -3,7 +3,7 @@ public class SystemMenu{
 public static void main(String[] args){
 Scanner scanner=new Scanner(System.in);
 System.out.println("ACADEMIC RISK DETECTION SYSTEM");
-System.out.println("1.Student Recrds");
+System.out.println("1.Student Records");
 System.out.println("2.Academic Performance");
 System.out.println("3.Attendance");
 System.out.println("4.Risk Assesment");
@@ -24,7 +24,7 @@ case 4:
 System.out.println("Risk assesment selected");
 break;
 case 5:
-System.out.println("exiting system");
+System.out.println("Exiting system");
 break;
 default:
 System.out.println("Invalid option.");

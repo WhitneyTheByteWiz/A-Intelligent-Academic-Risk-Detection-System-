@@ -1,0 +1,15 @@
+[33m0102d6c[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m Fix grammar in README.md
+[33m30c7c18[m Add SystemMenu class for academic risk detection
+[33me8851cd[m Create SystemMenu.java
+[33m92ab7b2[m Implement student performance checker
+[33m29af2d2[m changes
+[33m1ec4c6d[m updates wee2 risk checker
+[33m2367885[m Correct folder name from /SRC to /src
+[33m81b2f4c[m Fix capitalization in README.md
+[33ma5a8cb2[m Add project details and file locations to README
+[33m957a513[m Delete src/src/Risk Detection & Assessment/students.java
+[33mfc3ff0e[m Delete src/src/Risk Detection & Assessment/student
+[33mc9f387b[m minor changes
+[33m21af0a1[m Merge branch 'main' of https://github.com/WhitneyTheByteWiz/A-Intelligent-Academic-Risk-Detection-System-
+[33m54917ae[m restructured...
+[33me7c3df8[m Create student

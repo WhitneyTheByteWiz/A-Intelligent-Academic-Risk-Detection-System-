@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class PerformanceChecker {
+public class AcademicPerformance{
 
     public static void main(String[] args) {
 
