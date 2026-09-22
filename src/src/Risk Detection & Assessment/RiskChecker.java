@@ -1,4 +1,4 @@
-package src.riskChecker;
+package  src.RiskChecker;
 
 public class RiskChecker {
 
