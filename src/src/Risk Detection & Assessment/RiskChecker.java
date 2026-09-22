@@ -1,8 +1,12 @@
-package  src.RiskChecker;
+package src.RiskChecker;
+
+import java.util.Scanner;
 
 public class RiskChecker {
 
     public static void main(String[] args) {
+
+        Scanner scanner = new Scanner(System.in);
 
         String studentName = "John";
         double averageMark = 55;
