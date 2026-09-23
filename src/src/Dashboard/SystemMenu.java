@@ -17,15 +17,20 @@ public class SystemMenu {
     }
 
     public static void displayMenu() {
+String[] menuOptions={
+        "1. Student Records",
+        "2. Academic Performance",
+        "3. Attendance",
+        "4. Risk Assessment",
+        "5. Exit"
+    }; 
 
-        System.out.println("ACADEMIC RISK DETECTION SYSTEM");
-        System.out.println("1. Student Records");
-        System.out.println("2. Academic Performance");
-        System.out.println("3. Attendance");
-        System.out.println("4. Risk Assessment");
-        System.out.println("5. Exit");
+    System.out.println("ACADEMIC RISK DETECTION SYSTEM")
+ for (int i=0;i<menuOptions.length;i++){
+        System.out.println(i+1)+"." + menuOptions[i]
+            );
     }
-
+    }
     public static void processChoice(int choice) {
 
         switch (choice) {
