@@ -2,12 +2,7 @@ import java.util.Scanner;
 
 public class AttendanceChecker {
 
-    public static void main(String[] args) {
-
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.print("Enter attendance percentage: ");
-        double attendance = scanner.nextDouble();
+     public static void checkAttendance(double attendance) {
 
         if (attendance < 0 || attendance > 100) {
             System.out.println("Invalid attendance percentage.");
@@ -18,6 +13,15 @@ public class AttendanceChecker {
         } else {
             System.out.println("Good attendance.");
         }
+    }
+    public static void main(String[] args) {
+
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter attendance percentage: ");
+        double attendance = scanner.nextDouble();
+
+        checkAttendance(attendance);
 
         scanner.close();
     }
