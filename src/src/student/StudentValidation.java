@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class StudentValidation {
 
     
-    // first method 
+    // the ValidateStudent method 
     public static void validateStudent(String studentName, String studentNumber) {
 
         if (studentName.isEmpty() || studentNumber.isEmpty()) {
@@ -16,7 +16,7 @@ public class StudentValidation {
     }
 
    
-    // second method
+    //  the display method
     public static void displayStudent(String studentName, String studentNumber) {
 
         System.out.println("Student information recorded successfully.");
