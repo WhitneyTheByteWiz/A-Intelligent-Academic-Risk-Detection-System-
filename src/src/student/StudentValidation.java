@@ -1,3 +1,5 @@
+//overall objective of this code: Collect, Check, and Display student information...
+
 import java.util.Scanner;
 
 public class StudentValidation {
