@@ -2,6 +2,7 @@ import java.util.Scanner;
 
 public class StudentValidation {
 
+    
     // first method 
     public static void validateStudent(String studentName, String studentNumber) {
 
@@ -12,6 +13,7 @@ public class StudentValidation {
         }
     }
 
+   
     // second method
     public static void displayStudent(String studentName, String studentNumber) {
 
@@ -20,6 +22,7 @@ public class StudentValidation {
         System.out.println("Student Number: " + studentNumber);
     }
 
+   
     // MAIN METHOD
     public static void main(String[] args) {
 
