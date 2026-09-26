@@ -14,7 +14,6 @@ public class main {
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
-
         int choice;
 
         do {
@@ -22,6 +21,16 @@ public class main {
             displayMenu();
 
             System.out.print("\nEnter your choice: ");
+
+            while (!scanner.hasNextInt()) {
+                System.out.println(
+                    "Invalid input. Please enter a number from 1 to 5."
+                );
+
+                scanner.nextLine();
+                System.out.print("Enter your choice: ");
+            }
+
             choice = scanner.nextInt();
             scanner.nextLine();
 
@@ -48,7 +57,9 @@ public class main {
                     break;
 
                 default:
-                    System.out.println("\nInvalid option.");
+                    System.out.println(
+                        "\nInvalid option. Please select from 1 to 5."
+                    );
             }
 
         } while (choice != 5);
@@ -74,18 +85,18 @@ public class main {
         System.out.println("================================");
 
         for (int i = 0; i < menuOptions.length; i++) {
-
             System.out.println((i + 1) + ". " + menuOptions[i]);
         }
     }
 
 
-    // Add a student
+    // Add a new student
     public static void addStudent(Scanner scanner) {
 
         if (studentCount >= MAX_STUDENTS) {
-
-            System.out.println("\nMaximum number of students reached.");
+            System.out.println(
+                "\nMaximum number of students reached."
+            );
             return;
         }
 
@@ -99,22 +110,55 @@ public class main {
         String studentNumber = scanner.nextLine();
 
         if (name.isEmpty() || studentNumber.isEmpty()) {
-
-            System.out.println("Student name and number cannot be empty.");
+            System.out.println(
+                "Student name and number cannot be empty."
+            );
             return;
         }
 
         double average = enterMarks(scanner);
 
-        System.out.print("\nEnter attendance percentage: ");
+        System.out.print(
+            "\nEnter attendance percentage: "
+        );
+
+        while (!scanner.hasNextDouble()) {
+            System.out.println(
+                "Invalid input. Please enter a number."
+            );
+
+            scanner.nextLine();
+
+            System.out.print(
+                "Enter attendance percentage: "
+            );
+        }
+
         double attendance = scanner.nextDouble();
         scanner.nextLine();
 
         while (attendance < 0 || attendance > 100) {
 
-            System.out.println("Attendance must be between 0 and 100.");
+            System.out.println(
+                "Attendance must be between 0 and 100."
+            );
 
-            System.out.print("Enter attendance percentage: ");
+            System.out.print(
+                "Enter attendance percentage: "
+            );
+
+            while (!scanner.hasNextDouble()) {
+                System.out.println(
+                    "Invalid input. Please enter a number."
+                );
+
+                scanner.nextLine();
+
+                System.out.print(
+                    "Enter attendance percentage: "
+                );
+            }
+
             attendance = scanner.nextDouble();
             scanner.nextLine();
         }
@@ -127,21 +171,55 @@ public class main {
         studentCount++;
 
         System.out.println();
-        System.out.println("Student added successfully.");
+        System.out.println(
+            "Student added successfully."
+        );
     }
 
 
-    // Enter marks and calculate average
+    // Enter student marks
     public static double enterMarks(Scanner scanner) {
 
-        System.out.print("\nHow many marks do you want to enter? ");
+        System.out.print(
+            "\nHow many marks do you want to enter? "
+        );
+
+        while (!scanner.hasNextInt()) {
+            System.out.println(
+                "Invalid input. Please enter a number."
+            );
+
+            scanner.nextLine();
+
+            System.out.print(
+                "How many marks do you want to enter? "
+            );
+        }
+
         int numberOfMarks = scanner.nextInt();
 
         while (numberOfMarks <= 0) {
 
-            System.out.println("Number of marks must be greater than 0.");
+            System.out.println(
+                "Number of marks must be greater than 0."
+            );
 
-            System.out.print("How many marks do you want to enter? ");
+            System.out.print(
+                "How many marks do you want to enter? "
+            );
+
+            while (!scanner.hasNextInt()) {
+                System.out.println(
+                    "Invalid input. Please enter a number."
+                );
+
+                scanner.nextLine();
+
+                System.out.print(
+                    "How many marks do you want to enter? "
+                );
+            }
+
             numberOfMarks = scanner.nextInt();
         }
 
@@ -149,33 +227,72 @@ public class main {
 
         for (int i = 0; i < marks.length; i++) {
 
-            System.out.print("Enter mark " + (i + 1) + ": ");
+            System.out.print(
+                "Enter mark " + (i + 1) + ": "
+            );
+
+            while (!scanner.hasNextDouble()) {
+
+                System.out.println(
+                    "Invalid input. Please enter a number."
+                );
+
+                scanner.nextLine();
+
+                System.out.print(
+                    "Enter mark " + (i + 1) + ": "
+                );
+            }
+
             marks[i] = scanner.nextDouble();
 
             while (marks[i] < 0 || marks[i] > 100) {
 
-                System.out.println("Mark must be between 0 and 100.");
+                System.out.println(
+                    "Mark must be between 0 and 100."
+                );
 
-                System.out.print("Enter mark " + (i + 1) + ": ");
+                System.out.print(
+                    "Enter mark " + (i + 1) + ": "
+                );
+
+                while (!scanner.hasNextDouble()) {
+
+                    System.out.println(
+                        "Invalid input. Please enter a number."
+                    );
+
+                    scanner.nextLine();
+
+                    System.out.print(
+                        "Enter mark " + (i + 1) + ": "
+                    );
+                }
+
                 marks[i] = scanner.nextDouble();
             }
         }
 
+        scanner.nextLine();
+
         double average = calculateAverage(marks);
 
-        System.out.println("Average Mark: " + average);
+        System.out.println(
+            "Average Mark: " + average
+        );
 
         return average;
     }
 
 
     // Calculate average mark
-    public static double calculateAverage(double[] marks) {
+    public static double calculateAverage(
+        double[] marks
+    ) {
 
         double total = 0;
 
         for (int i = 0; i < marks.length; i++) {
-
             total = total + marks[i];
         }
 
@@ -188,57 +305,146 @@ public class main {
 
         if (studentCount == 0) {
 
-            System.out.println("\nNo students have been added.");
+            System.out.println(
+                "\nNo students have been added."
+            );
+
             return;
         }
 
         System.out.println();
-        System.out.println("========== STUDENTS ==========");
+        System.out.println(
+            "========== STUDENTS =========="
+        );
 
         for (int i = 0; i < studentCount; i++) {
 
             System.out.println();
-            System.out.println("Student " + (i + 1));
-            System.out.println("Name: " + studentNames[i]);
-            System.out.println("Student Number: " + studentNumbers[i]);
-            System.out.println("Average Mark: " + averageMarks[i]);
-            System.out.println("Attendance: " + attendanceRecords[i] + "%");
-            System.out.println("------------------------------");
+            System.out.println(
+                "Student " + (i + 1)
+            );
+
+            System.out.println(
+                "Name: " + studentNames[i]
+            );
+
+            System.out.println(
+                "Student Number: " +
+                studentNumbers[i]
+            );
+
+            System.out.println(
+                "Average Mark: " +
+                averageMarks[i]
+            );
+
+            System.out.println(
+                "Attendance: " +
+                attendanceRecords[i] + "%"
+            );
+
+            System.out.println(
+                "------------------------------"
+            );
         }
     }
 
 
-    // Check risk for one student
-    public static void checkStudentRisk(Scanner scanner) {
+    // Display students for selection
+    public static void displayStudentList() {
 
-        if (studentCount == 0) {
-
-            System.out.println("\nNo students available.");
-            return;
-        }
-
-        System.out.print("\nEnter student number: ");
-        String targetStudentNumber = scanner.nextLine();
+        System.out.println();
+        System.out.println(
+            "========== SELECT STUDENT =========="
+        );
 
         for (int i = 0; i < studentCount; i++) {
 
-            if (studentNumbers[i].equals(targetStudentNumber)) {
-
-                checkRisk(
-                    studentNames[i],
-                    averageMarks[i],
-                    attendanceRecords[i]
-                );
-
-                return;
-            }
+            System.out.println(
+                (i + 1)
+                + ". "
+                + studentNames[i]
+                + " - "
+                + studentNumbers[i]
+            );
         }
 
-        System.out.println("Student not found.");
+        System.out.println(
+            "===================================="
+        );
     }
 
 
-    // Determine student risk
+    // Get selected student array index
+    public static int selectStudent(
+        Scanner scanner
+    ) {
+
+        displayStudentList();
+
+        System.out.print(
+            "\nSelect student: "
+        );
+
+        while (!scanner.hasNextInt()) {
+
+            System.out.println(
+                "Invalid input. Please enter a number."
+            );
+
+            scanner.nextLine();
+
+            System.out.print(
+                "Select student: "
+            );
+        }
+
+        int selection = scanner.nextInt();
+        scanner.nextLine();
+
+        if (selection < 1 ||
+            selection > studentCount) {
+
+            System.out.println(
+                "\nInvalid student selection."
+            );
+
+            return -1;
+        }
+
+        return selection - 1;
+    }
+
+
+    // Check risk for one selected student
+    public static void checkStudentRisk(
+        Scanner scanner
+    ) {
+
+        if (studentCount == 0) {
+
+            System.out.println(
+                "\nNo students available."
+            );
+
+            return;
+        }
+
+        int index = selectStudent(scanner);
+
+        if (index == -1) {
+            return;
+        }
+
+        checkRisk(
+            studentNames[index],
+            averageMarks[index],
+            attendanceRecords[index]
+        );
+    }
+
+
+    // Determine risk level
     public static void checkRisk(
         String name,
         double averageMark,
@@ -246,72 +452,116 @@ public class main {
     ) {
 
         System.out.println();
-        System.out.println("========== RISK ASSESSMENT ==========");
-        System.out.println("Student: " + name);
-        System.out.println("Average Mark: " + averageMark);
-        System.out.println("Attendance: " + attendance + "%");
+        System.out.println(
+            "========== RISK ASSESSMENT =========="
+        );
 
-        if (attendance < 60 || averageMark < 50) {
+        System.out.println(
+            "Student: " + name
+        );
 
-            System.out.println("Risk Level: HIGH RISK");
+        System.out.println(
+            "Average Mark: " + averageMark
+        );
+
+        System.out.println(
+            "Attendance: " + attendance + "%"
+        );
+
+        if (attendance < 60 ||
+            averageMark < 50) {
+
+            System.out.println(
+                "Risk Level: HIGH RISK"
+            );
 
         } else if (attendance < 75) {
 
-            System.out.println("Risk Level: MODERATE RISK");
+            System.out.println(
+                "Risk Level: MODERATE RISK"
+            );
 
         } else {
 
-            System.out.println("Risk Level: LOW RISK");
+            System.out.println(
+                "Risk Level: LOW RISK"
+            );
         }
 
-        System.out.println("=====================================");
+        System.out.println(
+            "====================================="
+        );
     }
 
 
-    // Display full report for one student
-    public static void displayFullReport(Scanner scanner) {
+    // Display full report for one selected student
+    public static void displayFullReport(
+        Scanner scanner
+    ) {
 
         if (studentCount == 0) {
 
-            System.out.println("\nNo student records available.");
+            System.out.println(
+                "\nNo student records available."
+            );
+
             return;
         }
 
-        System.out.print("\nEnter student number: ");
-        String targetStudentNumber = scanner.nextLine();
+        int index = selectStudent(scanner);
 
-        for (int i = 0; i < studentCount; i++) {
-
-            if (studentNumbers[i].equals(targetStudentNumber)) {
-
-                System.out.println();
-                System.out.println("========== FULL REPORT ==========");
-                System.out.println("Name: " + studentNames[i]);
-                System.out.println("Student Number: " + studentNumbers[i]);
-                System.out.println("Average Mark: " + averageMarks[i]);
-                System.out.println(
-                    "Attendance: " + attendanceRecords[i] + "%"
-                );
-
-                if (attendanceRecords[i] < 60 ||
-                    averageMarks[i] < 50) {
-
-                    System.out.println("Risk Level: HIGH RISK");
-
-                } else if (attendanceRecords[i] < 75) {
-
-                    System.out.println("Risk Level: MODERATE RISK");
-
-                } else {
-
-                    System.out.println("Risk Level: LOW RISK");
-                }
-
-                System.out.println("=================================");
-                return;
-            }
+        if (index == -1) {
+            return;
         }
 
-        System.out.println("Student not found.");
+        System.out.println();
+        System.out.println(
+            "========== FULL REPORT =========="
+        );
+
+        System.out.println(
+            "Name: " + studentNames[index]
+        );
+
+        System.out.println(
+            "Student Number: " +
+            studentNumbers[index]
+        );
+
+        System.out.println(
+            "Average Mark: " +
+            averageMarks[index]
+        );
+
+        System.out.println(
+            "Attendance: " +
+            attendanceRecords[index] + "%"
+        );
+
+        if (attendanceRecords[index] < 60 ||
+            averageMarks[index] < 50) {
+
+            System.out.println(
+                "Risk Level: HIGH RISK"
+            );
+
+        } else if (
+            attendanceRecords[index] < 75
+        ) {
+
+            System.out.println(
+                "Risk Level: MODERATE RISK"
+            );
+
+        } else {
+
+            System.out.println(
+                "Risk Level: LOW RISK"
+            );
+        }
+
+        System.out.println(
+            "================================="
+        );
     }
 }
