@@ -2,38 +2,51 @@ import java.util.Scanner;
 
 public class SystemMenu {
 
-    public static void main(String[] args) {
+    public void displayMenu() {
 
-        Scanner scanner = new Scanner(System.in);
+        String[] menuOptions = {
+            "Student Records",
+            "Academic Performance",
+            "Attendance",
+            "Risk Assessment",
+            "Exit"
+        };
 
-        displayMenu();
+        System.out.println();
+        System.out.println("================================");
+        System.out.println(" ACADEMIC RISK DETECTION SYSTEM");
+        System.out.println("================================");
 
-        System.out.print("Select an option: ");
-        int choice = scanner.nextInt();
-
-        processChoice(choice);
-
-        scanner.close();
+        for (int i = 0; i < menuOptions.length; i++) {
+            System.out.println((i + 1) + ". " + menuOptions[i]);
+        }
     }
 
-    public static void displayMenu() {
-String[] menuOptions={
-        "1. Student Records",
-        "2. Academic Performance",
-        "3. Attendance",
-        "4. Risk Assessment",
-        "5. Exit"
-    }; 
+    public int getUserChoice(Scanner scanner) {
 
-    System.out.println("ACADEMIC RISK DETECTION SYSTEM")
- for (int i=0;i<menuOptions.length;i++){
-        System.out.println(i+1)+"." + menuOptions[i]
+        System.out.print("\nSelect an option: ");
+
+        while (!scanner.hasNextInt()) {
+
+            System.out.println(
+                "Invalid input. Please enter a number from 1 to 5."
             );
+
+            scanner.nextLine();
+
+            System.out.print("Select an option: ");
+        }
+
+        int choice = scanner.nextInt();
+        scanner.nextLine();
+
+        return choice;
     }
-    }
-    public static void processChoice(int choice) {
+
+    public void processChoice(int choice) {
 
         switch (choice) {
+
             case 1:
                 System.out.println("Student Records selected.");
                 break;
@@ -55,7 +68,24 @@ String[] menuOptions={
                 break;
 
             default:
-                System.out.println("Invalid option.");
+                System.out.println(
+                    "Invalid option. Please select from 1 to 5."
+                );
         }
+    }
+
+    public static void main(String[] args) {
+
+        Scanner scanner = new Scanner(System.in);
+
+        SystemMenu menu = new SystemMenu();
+
+        menu.displayMenu();
+
+        int choice = menu.getUserChoice(scanner);
+
+        menu.processChoice(choice);
+
+        scanner.close();
     }
 }
