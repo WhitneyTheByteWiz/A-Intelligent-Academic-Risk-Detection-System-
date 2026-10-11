@@ -53,3 +53,4 @@ public class AcademicPerformance {
         return total / marks.length;
     }
 }
+
