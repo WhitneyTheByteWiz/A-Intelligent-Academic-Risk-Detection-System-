@@ -1,38 +1,75 @@
+package RiskDetectionAndAssessment;
+
 import java.util.Scanner;
 
-public class RiskChecker {
+public class RiskAssessment {
 
+    // Fields
+    double averageMark;
+    double attendance;
+
+    // Constructor
+    public RiskAssessment(
+        double averageMark,
+        double attendance
+    ) {
+        this.averageMark = averageMark;
+        this.attendance = attendance;
+    }
+
+    // Check student risk level
+    public void checkRisk() {
+
+        if (attendance < 60 ||
+            averageMark < 50) {
+
+            System.out.println(
+                "Risk Level: HIGH RISK"
+            );
+
+        } else if (attendance < 75) {
+
+            System.out.println(
+                "Risk Level: MODERATE RISK"
+            );
+
+        } else {
+
+            System.out.println(
+                "Risk Level: LOW RISK"
+            );
+        }
+    }
+
+    // Main method for testing
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Enter student name: ");
-        String studentName = scanner.nextLine();
+        System.out.print(
+            "Enter average mark: "
+        );
 
-        System.out.print("Enter average mark: ");
-        double averageMark = scanner.nextDouble();
+        double averageMark =
+            scanner.nextDouble();
 
-        System.out.print("Enter attendance percentage: ");
-        double attendance = scanner.nextDouble();
+        System.out.print(
+            "Enter attendance percentage: "
+        );
 
-        displayTitle();
-        checkRisk(studentName, averageMark, attendance);
+        double attendance =
+            scanner.nextDouble();
+
+        // Create RiskAssessment object
+        RiskAssessment assessment =
+            new RiskAssessment(
+                averageMark,
+                attendance
+            );
+
+        // Check risk level
+        assessment.checkRisk();
 
         scanner.close();
-    }
-
-    public static void displayTitle() {
-        System.out.println("\nACADEMIC RISK DETECTION SYSTEM");
-    }
-
-    public static void checkRisk(String studentName, double averageMark, double attendance) {
-
-        if (attendance < 60 || averageMark < 50) {
-            System.out.println(studentName + " is at high risk of failing");
-        } else if (attendance < 75) {
-            System.out.println(studentName + " has moderate attendance");
-        } else {
-            System.out.println(studentName + " has good attendance");
-        }
     }
 }
