@@ -1,50 +1,67 @@
-package RiskDetectionAndAssessment;
-
 import java.util.Scanner;
 
-public class RiskAssessment {
+public class RiskChecker {
 
     // Fields
+    String studentName;
     double averageMark;
     double attendance;
 
     // Constructor
-    public RiskAssessment(
+    public RiskChecker(
+        String studentName,
         double averageMark,
         double attendance
     ) {
+        this.studentName = studentName;
         this.averageMark = averageMark;
         this.attendance = attendance;
     }
 
-    // Check student risk level
+    // Display system title
+    public void displayTitle() {
+        System.out.println(
+            "\nACADEMIC RISK DETECTION SYSTEM"
+        );
+    }
+
+    // Check student risk
     public void checkRisk() {
 
-        if (attendance < 60 ||
-            averageMark < 50) {
+        if (attendance < 60 || averageMark < 50) {
 
             System.out.println(
-                "Risk Level: HIGH RISK"
+                studentName +
+                " is at high risk of failing"
             );
 
         } else if (attendance < 75) {
 
             System.out.println(
-                "Risk Level: MODERATE RISK"
+                studentName +
+                " has moderate attendance"
             );
 
         } else {
 
             System.out.println(
-                "Risk Level: LOW RISK"
+                studentName +
+                " has good attendance"
             );
         }
     }
 
-    // Main method for testing
+    // Main method
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
+
+        System.out.print(
+            "Enter student name: "
+        );
+
+        String studentName =
+            scanner.nextLine();
 
         System.out.print(
             "Enter average mark: "
@@ -60,15 +77,17 @@ public class RiskAssessment {
         double attendance =
             scanner.nextDouble();
 
-        // Create RiskAssessment object
-        RiskAssessment assessment =
-            new RiskAssessment(
+        // Create RiskChecker object
+        RiskChecker riskChecker =
+            new RiskChecker(
+                studentName,
                 averageMark,
                 attendance
             );
 
-        // Check risk level
-        assessment.checkRisk();
+        // Call object methods
+        riskChecker.displayTitle();
+        riskChecker.checkRisk();
 
         scanner.close();
     }
