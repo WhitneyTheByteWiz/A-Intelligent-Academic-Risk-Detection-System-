@@ -1,11 +1,12 @@
-//overall objective of this code: Collect, Check, and Display student information...
+package student;
+
+// Overall objective of this code: Collect, Check, and Display student information.
 
 import java.util.Scanner;
 
 public class StudentValidation {
 
-    
-    // the ValidateStudent method 
+    // The validateStudent method
     public static void validateStudent(String studentName, String studentNumber) {
 
         if (studentName.isEmpty() || studentNumber.isEmpty()) {
@@ -15,8 +16,7 @@ public class StudentValidation {
         }
     }
 
-   
-    //  the display method
+    // The display method
     public static void displayStudent(String studentName, String studentNumber) {
 
         System.out.println("Student information recorded successfully.");
@@ -24,8 +24,7 @@ public class StudentValidation {
         System.out.println("Student Number: " + studentNumber);
     }
 
-   
-    // MAIN METHOD
+    // Main method
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);

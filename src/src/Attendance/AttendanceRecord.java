@@ -1,4 +1,4 @@
-package src.Attendance;
+package Attendance;
 
 public class AttendanceRecord {
 

@@ -1,106 +1,84 @@
 # Intelligent Academic Risk Detection System
 
-## Project Overview
+## Project overview
 
-The Intelligent Academic Risk Detection System is a Java-based application developed as part of the CS350 Object-Oriented Programming course.
+A Java console application developed for CS350 Object-Oriented Programming. It records student details, academic marks and attendance, calculates average marks, and applies rule-based criteria to display an academic risk level.
 
-The system is designed to help identify and monitor students who may be academically at risk by considering their academic performance and attendance information.
+## Current capabilities
 
-## Problem Statement
+- Add up to 10 student records during one run.
+- Validate student names, student numbers, marks and attendance input.
+- Reject duplicate student numbers.
+- Enter multiple marks and calculate the average.
+- Display all recorded students.
+- Select a student to view a risk assessment or full report.
+- Use separate classes for student, academic record, attendance record, menu, performance checking and risk assessment.
 
-Academically at-risk students may not always be identified early because academic performance and attendance information may be reviewed separately or too late.
+## Important current limitations
 
-This system aims to provide a simple way of recording student information, academic performance, and attendance, and using this information to identify students who may require academic attention.
+- Student records are held in memory only. They are lost when the program exits.
+- `DataStorage`, `Storage.Main`, `RiskDashboard` and `CourseResult` remain placeholders. File/database storage and a full dashboard have not been implemented.
+- The current risk thresholds are development criteria, not approved institutional policy:
+  - HIGH RISK: average mark below 50 OR attendance below 60%.
+  - MODERATE RISK: attendance below 75%, provided the student is not high risk.
+  - LOW RISK: average mark at least 50 AND attendance at least 75%.
+- `RiskChecker` and `RiskAssessment` are both retained because both were part of the team's existing work. The main application uses `RiskAssessment` for its risk result.
 
-## Target Users
-
-Lecturers
-
-Academic Advisors
-
-Administrators
-
-## Core Features
-
-1. Student Record Management
-   Add and manage student information.
-
-2. Academic Performance Data Entry
-   Record and manage student academic performance.
-
-3. Attendance Data Entry
-   Record and monitor student attendance.
-
-4. Risk Detection and Flagging
-   Evaluate academic performance and attendance information to identify potentially at-risk students.
-
-5. Risk Dashboard and Search
-   View and search for students based on their academic risk status.
-
-## Project Structure
+## Project structure
 
 ```text
 src/src/
+├── main.java
 ├── Academic/
 │   ├── AcademicPerformance.java
 │   ├── AcademicRecord.java
-│   └── CourseResult.java
-│
+│   ├── CourseResult.java
+│   └── PerformanceChecker.java
 ├── Attendance/
 │   ├── AttendanceChecker.java
 │   └── AttendanceRecord.java
-│
 ├── Dashboard/
 │   ├── RiskDashboard.java
 │   └── SystemMenu.java
-│
 ├── Data/
 │   └── README.md
-│
 ├── RiskDetectionAndAssessment/
 │   ├── RiskAssessment.java
 │   └── RiskChecker.java
-│
 ├── Storage/
 │   ├── DataStorage.java
 │   └── Main.java
-│
 └── student/
+    ├── Student.java
     └── StudentValidation.java
 ```
 
-## Risk Detection Approach
+## Compile and run (Fedora/Linux)
 
-The system uses a rule-based approach to evaluate student academic performance and attendance.
+Run these commands from the repository root:
 
-The risk criteria used during development are subject to refinement as the project develops.
+```bash
+javac -d out $(find src/src -name "*.java")
+java -cp out main
+```
 
-The system is intended to assist in identifying students who may require attention and does not make academic or disciplinary decisions automatically.
+To remove generated build output:
 
-## Technologies Used
+```bash
+rm -rf out
+```
 
-Java
+The project uses only the Java standard library. No external dependencies are required.
 
-Git
+## Team
 
-GitHub
-
-Visual Studio Code
-
-## Team Members
-
-| Name | Student Number |
-|---|---|
+| Name | Student number |
+|---|---:|
 | Whitney Jr Syulikwa | 23146553 |
 | Josephat Malichi | 22102578 |
 | Chris Mukubu | 23998614 |
 | Nokuthula Hakamata | 23144129 |
 | Kangwa Chewe | 23131264 |
 
-## Course
-
-CS350 - Object-Oriented Programming in Java
-
-## Project Status
-
-The project is currently under development.
+**Course:** CS350 - Object-Oriented Programming in Java
+**Status:** Under development

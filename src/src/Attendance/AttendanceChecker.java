@@ -1,3 +1,5 @@
+package Attendance;
+
 import java.util.Scanner;
 
 public class AttendanceChecker {

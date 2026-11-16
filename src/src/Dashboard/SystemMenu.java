@@ -1,3 +1,5 @@
+package Dashboard;
+
 import java.util.Scanner;
 
 public class SystemMenu {

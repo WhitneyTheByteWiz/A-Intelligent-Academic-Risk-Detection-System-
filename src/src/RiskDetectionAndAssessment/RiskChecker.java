@@ -1,3 +1,5 @@
+package RiskDetectionAndAssessment;
+
 import java.util.Scanner;
 
 public class RiskChecker {

@@ -1,3 +1,5 @@
+package Academic;
+
 import java.util.Scanner;
 
 public class AcademicPerformance {
@@ -44,6 +46,10 @@ public class AcademicPerformance {
 
     public static double calculateAverage(double[] marks) {
 
+        if (marks == null || marks.length == 0) {
+            return 0;
+        }
+
         double total = 0;
 
         for (int i = 0; i < marks.length; i++) {
@@ -53,4 +59,3 @@ public class AcademicPerformance {
         return total / marks.length;
     }
 }
-
