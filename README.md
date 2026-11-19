@@ -13,11 +13,16 @@ A Java console application developed for CS350 Object-Oriented Programming. It r
 - Display all recorded students.
 - Select a student to view a risk assessment or full report.
 - Use separate classes for student, academic record, attendance record, menu, performance checking and risk assessment.
+- **Week 8:** `Student` inherits from `Person` and overrides `describe()`.
+- **Week 9:** risk is decided by `RiskRule` objects (abstract class with `AcademicRiskRule` and `AttendanceRiskRule`), and risk alerts are sent through the `Notifiable` interface (`EmailNotification`, `SMSNotification`; simulated output only).
+- **Week 10:** a Swing GUI (`Dashboard.RiskDashboard`) to add students, search by student number and send alerts.
 
 ## Important current limitations
 
 - Student records are held in memory only. They are lost when the program exits.
-- `DataStorage`, `Storage.Main`, `RiskDashboard` and `CourseResult` remain placeholders. File/database storage and a full dashboard have not been implemented.
+- `DataStorage`, `Storage.Main` and `CourseResult` remain placeholders. File/database storage has not been implemented.
+- The console app and the GUI each keep their own in-memory list, so students added in one are not visible in the other.
+- Email and SMS alerts are simulated (printed to the console); no message is really sent.
 - The current risk thresholds are development criteria, not approved institutional policy:
   - HIGH RISK: average mark below 50 OR attendance below 60%.
   - MODERATE RISK: attendance below 75%, provided the student is not high risk.
@@ -38,17 +43,26 @@ src/src/
 │   ├── AttendanceChecker.java
 │   └── AttendanceRecord.java
 ├── Dashboard/
-│   ├── RiskDashboard.java
+│   ├── RiskDashboard.java        (Week 10 Swing GUI)
 │   └── SystemMenu.java
 ├── Data/
 │   └── README.md
+├── Notification/                 (Week 9 interface)
+│   ├── Notifiable.java
+│   ├── EmailNotification.java
+│   ├── SMSNotification.java
+│   └── RiskAlertService.java
 ├── RiskDetectionAndAssessment/
 │   ├── RiskAssessment.java
-│   └── RiskChecker.java
+│   ├── RiskChecker.java
+│   ├── RiskRule.java             (Week 9 abstract class)
+│   ├── AcademicRiskRule.java
+│   └── AttendanceRiskRule.java
 ├── Storage/
 │   ├── DataStorage.java
 │   └── Main.java
 └── student/
+    ├── Person.java               (Week 8 parent class)
     ├── Student.java
     └── StudentValidation.java
 ```
@@ -59,8 +73,11 @@ Run these commands from the repository root:
 
 ```bash
 javac -d out $(find src/src -name "*.java")
-java -cp out main
+java -cp out main                      # console application
+java -cp out Dashboard.RiskDashboard   # Swing GUI (needs a desktop display)
 ```
+
+On Fedora, the GUI needs the full JDK/JRE package (for example `java-latest-openjdk-devel`), not only a `-headless` package.
 
 To remove generated build output:
 
