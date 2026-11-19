@@ -4,11 +4,11 @@ import Academic.AcademicRecord;
 import Attendance.AttendanceRecord;
 
 /**
- * Represents one student and the student's academic and attendance records.
+ * Week 8: a Student IS-A Person (inherits the validated name).
+ * A Student HAS-A AcademicRecord and HAS-A AttendanceRecord (composition).
  */
-public class Student {
+public class Student extends Person {
 
-    private String studentName;
     private String studentNumber;
     private AcademicRecord academicRecord;
     private AttendanceRecord attendanceRecord;
@@ -19,17 +19,23 @@ public class Student {
         double averageMark,
         double attendancePercentage
     ) {
-        this.studentName = studentName;
-        this.studentNumber = studentNumber;
+        super(studentName); // The parent constructor must run first.
+
+        if (studentNumber == null || studentNumber.isBlank()) {
+            throw new IllegalArgumentException("Student number is required.");
+        }
+
+        this.studentNumber = studentNumber.trim();
         this.academicRecord = new AcademicRecord(averageMark);
         this.attendanceRecord = new AttendanceRecord(
-            studentNumber,
+            this.studentNumber,
             attendancePercentage
         );
     }
 
+    // Kept so existing code that calls getStudentName() still works.
     public String getStudentName() {
-        return studentName;
+        return getName();
     }
 
     public String getStudentNumber() {
@@ -50,5 +56,10 @@ public class Student {
 
     public double getAttendance() {
         return attendanceRecord.getAttendancePercentage();
+    }
+
+    @Override
+    public String describe() {
+        return "Student: " + getName() + " (" + studentNumber + ")";
     }
 }
