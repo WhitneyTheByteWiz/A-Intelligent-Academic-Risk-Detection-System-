@@ -8,6 +8,12 @@ public class RiskAssessment {
     double averageMark;
     double attendance;
 
+    // Week 9: one array holds different rule objects (polymorphism).
+    private RiskRule[] rules = {
+        new AcademicRiskRule(),
+        new AttendanceRiskRule()
+    };
+
     // Constructor
     public RiskAssessment(
         double averageMark,
@@ -17,26 +23,40 @@ public class RiskAssessment {
         this.attendance = attendance;
     }
 
+    // The overall level is the most serious level given by any rule.
+    public int getRiskLevel() {
+
+        int overall = RiskRule.LOW;
+
+        for (int i = 0; i < rules.length; i++) {
+            int level = rules[i].evaluate(averageMark, attendance);
+
+            if (level > overall) {
+                overall = level;
+            }
+        }
+
+        return overall;
+    }
+
+    public String getRiskLevelName() {
+        return RiskRule.levelName(getRiskLevel());
+    }
+
     // Check student risk level
     public void checkRisk() {
 
-        if (attendance < 60 ||
-            averageMark < 50) {
+        System.out.println(
+            "Risk Level: " + getRiskLevelName()
+        );
+    }
 
+    // Show how each rule rated the student.
+    public void explainRisk() {
+
+        for (int i = 0; i < rules.length; i++) {
             System.out.println(
-                "Risk Level: HIGH RISK"
-            );
-
-        } else if (attendance < 75) {
-
-            System.out.println(
-                "Risk Level: MODERATE RISK"
-            );
-
-        } else {
-
-            System.out.println(
-                "Risk Level: LOW RISK"
+                " - " + rules[i].describeResult(averageMark, attendance)
             );
         }
     }
