@@ -2,6 +2,10 @@ import java.util.Scanner;
 
 import Academic.AcademicPerformance;
 import Attendance.AttendanceChecker;
+import Notification.EmailNotification;
+import Notification.Notifiable;
+import Notification.RiskAlertService;
+import Notification.SMSNotification;
 import RiskDetectionAndAssessment.RiskAssessment;
 import student.Student;
 import student.StudentValidation;
@@ -27,7 +31,7 @@ public class main {
 
             while (!scanner.hasNextInt()) {
                 System.out.println(
-                    "Invalid input. Please enter a number from 1 to 5."
+                    "Invalid input. Please enter a number from 1 to 6."
                 );
 
                 scanner.nextLine();
@@ -56,16 +60,20 @@ public class main {
                     break;
 
                 case 5:
+                    sendRiskAlert(scanner);
+                    break;
+
+                case 6:
                     System.out.println("\nExiting system...");
                     break;
 
                 default:
                     System.out.println(
-                        "\nInvalid option. Please select from 1 to 5."
+                        "\nInvalid option. Please select from 1 to 6."
                     );
             }
 
-        } while (choice != 5);
+        } while (choice != 6);
 
         scanner.close();
     }
@@ -78,6 +86,7 @@ public class main {
             "View All Students",
             "Check Student Risk",
             "View Student Full Report",
+            "Send Risk Alert",
             "Exit"
         };
 
@@ -376,7 +385,34 @@ public class main {
             student.getAttendance()
         );
         assessment.checkRisk();
+        assessment.explainRisk();
 
         System.out.println("=================================");
+    }
+
+    // Send a (simulated) risk alert to one selected student (Week 9 interface)
+    public static void sendRiskAlert(Scanner scanner) {
+
+        if (studentCount == 0) {
+            System.out.println("\nNo student records available.");
+            return;
+        }
+
+        int index = selectStudent(scanner);
+        if (index == -1) {
+            return;
+        }
+
+        Student student = students[index];
+
+        // One array, two different kinds of channel.
+        Notifiable[] channels = {
+            new EmailNotification(student.getName()),
+            new SMSNotification(student.getName())
+        };
+
+        System.out.println("\n========== RISK ALERT ==========");
+        RiskAlertService.sendAlert(student, channels);
+        System.out.println("================================");
     }
 }
